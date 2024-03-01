@@ -1,4 +1,4 @@
-import mongoose, { Document } from 'mongoose';
+import mongoose, { Document } from 'mongoose'
 
 interface IBook extends Document {
   title: string;
@@ -22,6 +22,18 @@ const bookSchema = new mongoose.Schema({
   },
 });
 
-const Book = mongoose.model<IBook>('Book', bookSchema);
+const Book = mongoose.model<IBook>('Book', bookSchema)
 
-export default Book;
+
+// how to create a new book
+
+const book = new Book({
+  title: 'testBook',
+  author: 'testAuthor',
+  ISBN: 'testISBN'
+})
+
+// this needs to happen after mongo db connect
+// await book.save()
+
+export default Book
