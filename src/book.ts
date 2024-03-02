@@ -22,7 +22,7 @@ const bookSchema = new mongoose.Schema({
   },
 });
 
-const Book = mongoose.model<IBook>('Book', bookSchema)
+export const Book = mongoose.model<IBook>('Book', bookSchema)
 
 
 // how to create a new book
