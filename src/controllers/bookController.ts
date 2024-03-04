@@ -62,7 +62,35 @@ export const addBook = (req: Request, res: Response) => {
         res.json({message: 'saved book successfully'})
 
     } catch(err) {
-        console.log("error", err)
+        log("error", err)
+        res.status(500).json({error: err})
+    }
+}
+
+export const updateBook = async (req: Request, res: Response) => {
+    try {
+        log('udpate book endpoint')
+        const {id, title, author, isbn} = req.body
+        if (!id) {
+            const errorMessage = 'missing book id'
+            res.status(500).json({error: errorMessage})
+        }
+        const filter = { '_id': id};
+        const update = { 
+            title: title, 
+            author: author,
+            isbn: isbn
+        };
+
+        // `doc` is the document _before_ `update` was applied
+        // TODO: get err/success response from update call and send response back to client
+        let doc = await Book.findOneAndUpdate(filter, update)
+
+        res.json({message: 'updated book successfully'})
+
+
+    } catch(err) {
+        log("error", err)
         res.status(500).json({error: err})
     }
 }
