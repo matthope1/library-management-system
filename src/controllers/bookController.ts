@@ -1,5 +1,4 @@
 
-import mongoose from 'mongoose'
 import { log } from 'console'
 import { Request, Response } from 'express'
 import { Book } from '../book'
@@ -7,8 +6,7 @@ import { Book } from '../book'
 export const getAllBooks = async (req: Request, res: Response) => {
 
     try {
-        log("get all boooks endpoint")
-        // Use the find() method to get all records from the 'books' collection
+        log("get all books endpoint")
         const books = await Book.find();
         log("books returned from db: ", books)
         res.json(books)
@@ -22,12 +20,8 @@ export const getAllBooks = async (req: Request, res: Response) => {
 export const getBookById = async (req: Request, res: Response) => {
 
     try {
-        log("get book by id")
         const {id} = req.params
-        log("id", id)
-        // Use the find() method to get all records from the 'books' collection
         const found = await Book.find({ "_id": `${id}`})
-        log("book returned from db: ", found)
         res.json(found)
 
     } catch(err) {
@@ -36,25 +30,21 @@ export const getBookById = async (req: Request, res: Response) => {
     }
 }
 
-
 export const addBook = (req: Request, res: Response) => {
 
     try {
-        log("add book endpoint")
-        // TODO: get title, author, isbn from req body
-        log("req.body", req.body)
 
-        const {title, author, isbn} = req.body
+        const {title, author, ISBN} = req.body
 
-        if (!title || ! author || ! isbn) {
+        if (!title || !author || !ISBN ) {
             const errorMessage = 'missing title/author/isbn'
             res.status(500).json({ error: errorMessage })
         }
 
         const book = new Book({
-            title: title ,
+            title: title,
             author: author,
-            ISBN: isbn
+            ISBN: ISBN 
         })
 
         book.save()
@@ -69,13 +59,18 @@ export const addBook = (req: Request, res: Response) => {
 
 export const updateBook = async (req: Request, res: Response) => {
     try {
-        log('udpate book endpoint')
-        const {id, title, author, isbn} = req.body
+        const { id } = req.params
+        const { title, author, isbn } = req.body
+
+        if (!title && !author && !isbn) {
+            const errorMessage = 'provided no fields to update'
+            res.status(500).json({error: errorMessage})
+        }
         if (!id) {
             const errorMessage = 'missing book id'
             res.status(500).json({error: errorMessage})
         }
-        const filter = { '_id': id}
+        const filter = { '_id': id }
         const update = { 
             title: title, 
             author: author,
@@ -88,7 +83,6 @@ export const updateBook = async (req: Request, res: Response) => {
 
         res.json({message: 'updated book successfully'})
 
-
     } catch(err) {
         log('error', err)
         res.status(500).json({error: err})
@@ -97,8 +91,7 @@ export const updateBook = async (req: Request, res: Response) => {
 
 export const deleteBook = async (req: Request, res: Response) => {
     try {
-        log('delete book endpoint')
-        const {id} =  req.body
+        const {id} =  req.params
 
         if (!id) {
             const errorMessage = 'missing book id'
@@ -106,12 +99,17 @@ export const deleteBook = async (req: Request, res: Response) => {
         }
         const filter = {'_id': id}
         const deleteResult = await Book.deleteOne(filter)
-        log('delete result', deleteResult)
 
+        if (deleteResult.deletedCount == 1) {
+            res.json({message: 'book deleted successfully'})
+        }
+
+        if (deleteResult.acknowledged == true && deleteResult.deletedCount == 0) {
+            res.json({message: 'book id does not exist'})
+        }
 
     } catch(err) {
         log('error', err)
         res.status(500).json({error: err})
     }
-
 }
