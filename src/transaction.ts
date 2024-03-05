@@ -2,7 +2,7 @@ import mongoose, { Document } from 'mongoose'
 
 interface ITransaction extends Document {
   bookID: mongoose.Types.ObjectId;
-  userID: mongoose.Types.ObjectId;
+  userID: number;
   borrowDate: Date;
   returnDate?: Date;
 }
@@ -14,8 +14,8 @@ const transactionSchema = new mongoose.Schema({
     required: true,
   },
   userID: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
+    type: Number,
+    // ref: 'User',
     required: true,
   },
   borrowDate: {
