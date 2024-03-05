@@ -10,7 +10,7 @@ router.get('/books', bookController.getAllBooks)
 router.get('/books/:id', bookController.getBookById)
 router.post('/books', bookController.addBook)
 router.put('/books/:id', bookController.updateBook)
-// router.delete('/books/:id', bookController.deleteBook)
+router.delete('/books/:id', bookController.deleteBook)
 
 router.post('/borrow', borrowController.borrowBook)
 // router.post('/return', borrowController.returnBook)

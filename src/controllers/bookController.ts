@@ -75,7 +75,7 @@ export const updateBook = async (req: Request, res: Response) => {
             const errorMessage = 'missing book id'
             res.status(500).json({error: errorMessage})
         }
-        const filter = { '_id': id};
+        const filter = { '_id': id}
         const update = { 
             title: title, 
             author: author,
@@ -90,7 +90,28 @@ export const updateBook = async (req: Request, res: Response) => {
 
 
     } catch(err) {
-        log("error", err)
+        log('error', err)
         res.status(500).json({error: err})
     }
+}
+
+export const deleteBook = async (req: Request, res: Response) => {
+    try {
+        log('delete book endpoint')
+        const {id} =  req.body
+
+        if (!id) {
+            const errorMessage = 'missing book id'
+            res.status(500).json({error: errorMessage})
+        }
+        const filter = {'_id': id}
+        const deleteResult = await Book.deleteOne(filter)
+        log('delete result', deleteResult)
+
+
+    } catch(err) {
+        log('error', err)
+        res.status(500).json({error: err})
+    }
+
 }
