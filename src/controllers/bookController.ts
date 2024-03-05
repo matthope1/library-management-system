@@ -1,6 +1,6 @@
 
 import { log } from 'console'
-import { Request, Response } from 'express'
+import { NextFunction, Request, Response } from 'express'
 import { Book } from '../book'
 
 export const getAllBooks = async (req: Request, res: Response) => {
@@ -12,12 +12,12 @@ export const getAllBooks = async (req: Request, res: Response) => {
         res.json(books)
 
     } catch(err) {
-        console.log("error", err)
+        log("error", err)
         res.status(500).json({error: err})
     }
 }
 
-export const getBookById = async (req: Request, res: Response) => {
+export const getBookById = async (req: Request, res: Response, next: NextFunction) => {
 
     try {
         const {id} = req.params
@@ -25,8 +25,10 @@ export const getBookById = async (req: Request, res: Response) => {
         res.json(found)
 
     } catch(err) {
-        console.log("error", err)
-        res.status(500).json({error: err})
+        log("error", err)
+        // TODO: test this
+        next(err);
+        // res.status(500).json({error: err})
     }
 }
 

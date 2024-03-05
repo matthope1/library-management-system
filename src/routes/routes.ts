@@ -13,7 +13,7 @@ router.put('/books/:id', bookController.updateBook)
 router.delete('/books/:id', bookController.deleteBook)
 
 router.post('/borrow', borrowController.borrowBook)
-// router.post('/return', borrowController.returnBook)
+router.post('/return', borrowController.returnBook)
 
 
 export default router
