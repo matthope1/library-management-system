@@ -15,3 +15,84 @@ html {
     padding-right: 10px; /* 3 */
     padding-left:  10px; /* 3 */
 }
+
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+html,input, body {
+    background-color: #121212;
+    color: white;
+}
+input {
+    background-color: #3f3f3f3f;
+    border: none;
+    border-radius: 8px;
+    padding: 7px;
+    margin: 5px 0;
+}
+select {
+    background-color: #3f3f3f3f;
+    border: none;
+    border-radius: 8px;
+    padding: 7px;
+    margin: 5px 0;
+    color: white;
+}
+option {
+    color: white !important;
+    background-color: #3f3f3f3f !important;
+    border: none !important;
+}
+
+button.btn.btn-primary {
+    width: 100%;
+    background-color: #a688fa;
+    border-radius: 25px;
+    cursor: pointer;
+    margin-top: 10px;
+    padding: 7px;
+    font-weight: bold;
+    border: none;
+    color: black;
+}
+button.btn.btn-primary:hover {
+    color: white;
+}
+
+
+* {
+    box-sizing: border-box;
+}
+
+button {
+    margin-top: 20px;
+}
+
+/* .wrapper {
+    padding: 15px;
+    width: 400px;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
+
+.content {
+    position: relative;
+    top: -170px;
+}
+
+.msg {
+    color: #a688fa;
+    font-weight: bold;
+    text-align: center;
+}
+
+.err-msg {
+    color: #cc0000;
+}
