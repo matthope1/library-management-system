@@ -9,7 +9,37 @@ const fetchBooks = async () => {
       };
       
     const response = await fetch(backendAPI, requestOptions)
-    console.log('fetch books response.json', await response.json())
+    books = await response.json()
+    console.log('books: ', books)
+
+    const bookListDiv = document.querySelector('.bookList');
+
+    const ulElement = document.createElement('ul');
+
+    books.forEach(book => {
+        const liElement = document.createElement('li');
+
+        liElement.textContent = `${book.title} by ${book.author}, ISBN: ${book.ISBN}`;
+
+        // Create the "Edit" button
+        const editButton = document.createElement('button');
+        editButton.type = 'button';
+        editButton.classList.add('btn', 'btn-primary', 'btn-sm');
+        editButton.setAttribute('data-toggle', 'modal');
+        editButton.setAttribute('data-target', '#editBookModal');
+        editButton.addEventListener('click', () => openEditModal(book.title, book.author, book.ISBN));
+        editButton.textContent = 'Edit Book';
+
+        // Append the "Edit" button to the list item
+        liElement.appendChild(editButton);
+      
+        ulElement.appendChild(liElement);
+    })
+
+    // Append the unordered list to the "bookList" div
+    bookListDiv.appendChild(ulElement);
+
+
 
     // Use fetch() to get books from your backend API
     // Update the bookList div with the fetched data
@@ -37,4 +67,32 @@ window.onload = function () {
     fetchBooks();
 };
 
-// Other event listeners and functions go here
+// interface
+
+// Function to open the edit modal and populate with book details
+function openEditModal(title, author, ISBN) {
+    // Populate form fields
+    document.getElementById('editTitle').value = title;
+    document.getElementById('editAuthor').value = author;
+    document.getElementById('editISBN').value = ISBN;
+
+    // Show the modal
+    $('#editBookModal').modal('show');
+}
+
+// const saveEditedBook = () => {
+//     console.log("save edited books called")
+
+// }
+
+
+let form = document.getElementById("editBookForm");
+
+form.addEventListener("submit", (e) => {
+    console.log("submit event listener hit")
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const formProps = Object.fromEntries(formData); console.log("form props", formProps)
+
+
+});
