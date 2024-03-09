@@ -5,15 +5,12 @@ html {
     box-sizing: inherit;
 }
 
-
 .wrapper {
-    margin-right: auto; /* 1 */
-    margin-left:  auto; /* 1 */
-  
-    max-width: 960px; /* 2 */
-  
-    padding-right: 10px; /* 3 */
-    padding-left:  10px; /* 3 */
+    margin-right: auto; 
+    margin-left:  auto; 
+    max-width: 960px;
+    padding-right: 10px; 
+    padding-left:  10px; 
 }
 
 
@@ -49,7 +46,6 @@ option {
 }
 
 button.btn.btn-primary {
-    /* width: 100%; */
     width: 130px;
     background-color: #a688fa;
     border-radius: 25px;
@@ -71,21 +67,6 @@ button.btn.btn-primary:hover {
 
 button {
     margin-top: 20px;
-}
-
-/* .wrapper {
-    padding: 15px;
-    width: 400px;
-    height: 100%;
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-} */
-
-.content {
-    position: relative;
-    top: -170px;
 }
 
 .msg {
