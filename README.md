@@ -21,6 +21,7 @@ API documentation
 
 This API provides endpoints to manage books and borrowing activities.
 
+
 ## Endpoints
 
 ### 1. Delete Book
@@ -64,7 +65,7 @@ This API provides endpoints to manage books and borrowing activities.
 - **Request:**
   - Method: PUT
   - URL: `localhost:3000/api/books/{bookId}`
-  - Updates a book by its ID.
+  - Updates book details by its ID.
   - **Body:**
     ```json
     {
@@ -72,11 +73,33 @@ This API provides endpoints to manage books and borrowing activities.
     }
     ```
 
-### 6. New Request
+### 6. Borrow Book
 
 - **Request:**
   - Method: POST
-  - URL: `localhost:3000/borrow`
-  - Creates a new borrowing request.
+  - URL: `localhost:3000/api/borrow`
+  - Borrows a book.
+  - **Body:**
+    ```json
+    {
+      "bookID": "",
+      "userID": "",
+      "borrowDate": ""
+    }
+    ```
 
+### 7. Return Book
+
+- **Request:**
+  - Method: POST
+  - URL: `localhost:3000/api/return`
+  - Returns a borrowed book.
+  - **Body:**
+    ```json
+    {
+      "bookID": "65e27edd8a0537e0e174d0ad",
+      "userID": "1",
+      "returnDate": "2024-03-06T19:59:04.025+00:00"
+    }
+    ```
 
