@@ -1,16 +1,14 @@
 // Fetch books and display on the main page
+const BACKEND_URL = 'http://localhost:3000/api/'
 const fetchBooks = async () => {
-    console.log('fetch books')
 
-    const backendAPI = 'http://localhost:3000/api/books'
     const requestOptions = {
         method: "GET",
         redirect: "follow"
       };
       
-    const response = await fetch(backendAPI, requestOptions)
+    const response = await fetch(BACKEND_URL + 'books', requestOptions)
     books = await response.json()
-    console.log('books: ', books)
 
     const bookListDiv = document.querySelector('.bookList');
 
@@ -27,7 +25,7 @@ const fetchBooks = async () => {
         editButton.classList.add('btn', 'btn-primary', 'btn-sm');
         editButton.setAttribute('data-toggle', 'modal');
         editButton.setAttribute('data-target', '#editBookModal');
-        editButton.addEventListener('click', () => openEditModal(book.title, book.author, book.ISBN));
+        editButton.addEventListener('click', () => openEditModal(book.title, book.author, book.ISBN, book._id));
         editButton.textContent = 'Edit Book';
 
         // Append the "Edit" button to the list item
@@ -40,9 +38,36 @@ const fetchBooks = async () => {
     bookListDiv.appendChild(ulElement);
 
 
-
     // Use fetch() to get books from your backend API
     // Update the bookList div with the fetched data
+}
+
+
+const updateBook = async (title, author, isbn, _id) => {
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    // console.log({title, author, isbn, _id})
+
+    const raw = JSON.stringify({
+        "title": title,
+        "author": author,
+        "ISBN": isbn
+    })
+
+    console.log("calling update book raw: ", raw)
+
+    const requestOptions = {
+        method: "PUT",
+        redirect: "follow",
+        headers: myHeaders,
+        body: raw,
+    };
+      
+    const response = await fetch(BACKEND_URL + `books/${_id}`, requestOptions)
+    const updateBookRes  = await response.json()
+    console.log("updatebook res", updateBookRes)
+
+
 }
 
 // Open the book form modal for adding or editing
@@ -70,20 +95,16 @@ window.onload = function () {
 // interface
 
 // Function to open the edit modal and populate with book details
-function openEditModal(title, author, ISBN) {
+function openEditModal(title, author, ISBN, _id) {
     // Populate form fields
-    document.getElementById('editTitle').value = title;
-    document.getElementById('editAuthor').value = author;
-    document.getElementById('editISBN').value = ISBN;
+    document.getElementById('editTitle').value = title
+    document.getElementById('editAuthor').value = author
+    document.getElementById('editISBN').value = ISBN
+    document.getElementById('_id').value = _id
 
     // Show the modal
     $('#editBookModal').modal('show');
 }
-
-// const saveEditedBook = () => {
-//     console.log("save edited books called")
-
-// }
 
 
 let form = document.getElementById("editBookForm");
@@ -91,6 +112,11 @@ let form = document.getElementById("editBookForm");
 form.addEventListener("submit", (e) => {
     console.log("submit event listener hit")
     e.preventDefault();
-    const formData = new FormData(e.target);
-    const formProps = Object.fromEntries(formData); console.log("form props", formProps)
+    const title = document.getElementById('editTitle').value
+    const author = document.getElementById('editAuthor').value
+    const isbn = document.getElementById('editISBN').value
+    const _id = document.getElementById('_id').value
+    updateBook(title,author,isbn,_id)
+    // call update book function
+
 });

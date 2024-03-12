@@ -38,7 +38,7 @@
                   </div>
                   <div class="modal-body">
                       <!-- Form for editing book -->
-                      <form id="editBookForm" enctype="multipart/form-data" onsubmit="return saveEditedBook(e)">
+                      <form id="editBookForm" enctype="multipart/form-data">
                           <div class="form-group">
                               <label for="editTitle">Title</label>
                               <input type="text" class="form-control" id="editTitle" required>
@@ -51,8 +51,12 @@
                               <label for="editISBN">ISBN</label>
                               <input type="text" class="form-control" id="editISBN" required>
                           </div>
+                          <div class="form-group" style="display: none">
+                            <input type="text" id="_id">
+                          </div>
+
                           <!-- Add more fields as needed -->
-                          <button type="submit" class="btn btn-primary" onclick="saveEditedBook()">Save Changes</button>
+                          <button type="submit" class="btn btn-primary">Save Changes</button>
                       </form>
                   </div>
               </div>
