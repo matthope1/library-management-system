@@ -1,5 +1,6 @@
 // Fetch books and display on the main page
 const BACKEND_URL = 'http://localhost:3000/api/'
+
 const fetchBooks = async () => {
 
     const requestOptions = {
@@ -26,10 +27,23 @@ const fetchBooks = async () => {
         editButton.setAttribute('data-toggle', 'modal');
         editButton.setAttribute('data-target', '#editBookModal');
         editButton.addEventListener('click', () => openEditModal(book.title, book.author, book.ISBN, book._id));
-        editButton.textContent = 'Edit Book';
+        editButton.textContent = 'Edit';
+
+        // const buttonContainer = document.createElement('div')
+        // buttonContainer.classList.add('btn-container')
+        // buttonContainer.appendChild(editButton)
 
         // Append the "Edit" button to the list item
         liElement.appendChild(editButton);
+        // TODO: add delete button 
+        const deleteButton = document.createElement('button')
+        deleteButton.type = 'button'
+        deleteButton.classList.add('btn', 'btn-primary', 'btn-sm')
+        deleteButton.addEventListener('click', () => {deleteBook(book._id)})
+
+        deleteButton.textContent = "Delete"
+        liElement.appendChild(deleteButton)
+        // liElement.appendChild(buttonContainer)
       
         ulElement.appendChild(liElement);
     })
@@ -40,6 +54,49 @@ const fetchBooks = async () => {
 
     // Use fetch() to get books from your backend API
     // Update the bookList div with the fetched data
+}
+
+const deleteBook = async (id) => {
+    const requestOptions = {
+        method: "DELETE",
+        redirect: "follow"
+    }
+
+    const response = await fetch(BACKEND_URL + `books/${id}`, requestOptions)
+    const responseJson = await response.json()
+    if (responseJson.message) {
+        alert("delete book successful")
+    } else {
+        alert("delete book failed")
+    }
+}
+      
+
+const saveBook = async (title, author, isbn) => {
+    const headers = new Headers()
+    headers.append("Content-Type", " application/json")
+    const raw = JSON.stringify({
+        "title": title,
+        "author": author,
+        "ISBN": isbn
+    })
+
+    const requestOptions = {
+        method: "POST",
+        headers: headers,
+        body: raw,
+        redirect: "follow"
+    }
+
+    const response = await fetch(BACKEND_URL + "books", requestOptions) 
+    const responseJson = await response.json()
+
+    if (responseJson.message) {
+        alert("add book successful")
+    } else {
+        alert("add book failed")
+    }
+
 }
 
 
@@ -70,30 +127,9 @@ const updateBook = async (title, author, isbn, _id) => {
     } else {
         alert("update book failed")
     }
-    console.log("updatebook res", updateBookRes)
+    console.log("update book res", updateBookRes)
 }
 
-// Open the book form modal for adding or editing
-function openBookForm() {
-    // Clear form fields and open the modal
-}
-
-// Save book data (Add or Update)
-function saveBook() {
-    // Use fetch() to send data to your backend API for adding/updating books
-    // Refresh the book list after saving
-}
-
-// Borrow or return a book
-function borrowReturnBook(bookId, action) {
-    // Use fetch() to interact with your backend API for borrow/return operations
-    // Refresh the book list after the operation
-}
-
-// Initial fetch when the page loads
-window.onload = function () {
-    fetchBooks();
-};
 
 // interface
 
@@ -110,9 +146,9 @@ function openEditModal(title, author, ISBN, _id) {
 }
 
 
-let form = document.getElementById("editBookForm");
+let editBookForm = document.getElementById("editBookForm");
 
-form.addEventListener("submit", (e) => {
+editBookForm.addEventListener("submit", (e) => {
     console.log("submit event listener hit")
     e.preventDefault();
     const title = document.getElementById('editTitle').value
@@ -120,6 +156,21 @@ form.addEventListener("submit", (e) => {
     const isbn = document.getElementById('editISBN').value
     const _id = document.getElementById('_id').value
     updateBook(title,author,isbn,_id)
-    // call update book function
-
 });
+
+let addBookForm = document.getElementById("addBookForm")
+
+addBookForm.addEventListener("submit", (e) => {
+    console.log("add book form")
+    e.preventDefault()
+    const title = document.getElementById('title').value
+    const author = document.getElementById('author').value
+    const isbn = document.getElementById('ISBN').value
+    saveBook(title,author,isbn)
+    $('#saveBookModal').modal('hide')
+})
+
+// Initial fetch when the page loads
+window.onload = function () {
+    fetchBooks();
+};

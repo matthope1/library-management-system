@@ -11,6 +11,7 @@ html {
     max-width: 960px;
     padding-right: 10px; 
     padding-left:  10px; 
+    border: 1px solid white;
 }
 
 
@@ -24,6 +25,11 @@ html,input, body {
     background-color: #121212;
     color: white;
 }
+
+label {
+    color: black;
+}
+
 input {
     background-color: #3f3f3f3f;
     border: none;
@@ -78,3 +84,12 @@ button {
 .err-msg {
     color: #cc0000;
 }
+
+.modal-title {
+    color: black;
+}
+
+.btn-container {
+    border: 1px solid pink;
+}
+
