@@ -1,6 +1,58 @@
 // Fetch books and display on the main page
 const BACKEND_URL = 'http://localhost:3000/api/'
 
+const borrowBook = async (bookID, userID, borrowDate) => {
+    const headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    const raw = JSON.stringify({
+        // "bookID": "65e27edd8a0537e0e174d0ad",
+        // "userID": "1",
+        // "borrowDate": "2024-03-06"
+        bookID: bookID,
+        userID: userID,
+        borrowDate, borrowDate
+    });
+
+    const requestOptions = {
+        method: "POST",
+        headers: headers,
+        body: raw,
+        redirect: "follow"
+    };
+
+    const response = await fetch(BACKEND_URL+"/borrow", requestOptions)
+    const responseJson = await response.json()
+    console.log("response", responseJson)
+}
+
+const returnBook = async(bookID, userID, returnDate) => {
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    const raw = JSON.stringify({
+        // "bookID": "65e27edd8a0537e0e174d0ad",
+        // "userID": "1",
+        // "returnDate": "2024-03-06"
+        bookID: bookID,
+        userID: userID,
+        borrowDate, borrowDate
+    });
+
+    const requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: raw,
+        redirect: "follow"
+    };
+
+    const response = await fetch(BACKEND_URL+"/return", requestOptions)
+    const responseJson = response.json()
+    console.log("responseJson", responseJson)
+
+}
+
+
 const fetchBooks = async () => {
 
     const requestOptions = {
@@ -101,8 +153,8 @@ const saveBook = async (title, author, isbn) => {
 
 
 const updateBook = async (title, author, isbn, _id) => {
-    const myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
+    const headers= new Headers();
+    headers.append("Content-Type", "application/json");
     // console.log({title, author, isbn, _id})
 
     const raw = JSON.stringify({
@@ -116,7 +168,7 @@ const updateBook = async (title, author, isbn, _id) => {
     const requestOptions = {
         method: "PUT",
         redirect: "follow",
-        headers: myHeaders,
+        headers: headers,
         body: raw,
     };
       
