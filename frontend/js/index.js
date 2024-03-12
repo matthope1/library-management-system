@@ -65,9 +65,12 @@ const updateBook = async (title, author, isbn, _id) => {
       
     const response = await fetch(BACKEND_URL + `books/${_id}`, requestOptions)
     const updateBookRes  = await response.json()
+    if (updateBookRes.message) {
+        alert("udpate book successful")
+    } else {
+        alert("update book failed")
+    }
     console.log("updatebook res", updateBookRes)
-
-
 }
 
 // Open the book form modal for adding or editing
