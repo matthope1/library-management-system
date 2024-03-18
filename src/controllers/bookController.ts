@@ -1,17 +1,13 @@
-import { log } from 'console'
 import { NextFunction, Request, Response } from 'express'
 import { Book } from '../book'
 
 export const getAllBooks = async (req: Request, res: Response, next: NextFunction) => {
 
     try {
-        log("get all books endpoint")
         const books = await Book.find()
-        log("books returned from db: ", books)
         res.json(books)
 
     } catch(err) {
-        log("error", err)
         next(err)
     }
 }
