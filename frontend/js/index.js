@@ -102,7 +102,6 @@ const fetchBooks = async () => {
     // Append the unordered list to the "bookList" div
     bookListDiv.appendChild(ulElement);
 
-
     // Use fetch() to get books from your backend API
     // Update the bookList div with the fetched data
 }
