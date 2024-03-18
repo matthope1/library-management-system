@@ -1,17 +1,23 @@
 html {
     box-sizing: border-box;
 }
+
 *, *:before, *:after {
     box-sizing: inherit;
 }
 
+* {
+    box-sizing: border-box;
+}
+
 .wrapper {
+    margin-top: 20px;
     margin-right: auto; 
     margin-left:  auto; 
     max-width: 960px;
     padding-right: 10px; 
     padding-left:  10px; 
-    border: 1px solid white;
+    /* border: 1px solid white; */
 }
 
 
@@ -52,7 +58,7 @@ option {
 }
 
 button.btn.btn-primary {
-    width: 130px;
+    width: 120px;
     background-color: #a688fa;
     border-radius: 25px;
     cursor: pointer;
@@ -61,15 +67,19 @@ button.btn.btn-primary {
     font-weight: bold;
     border: none;
     color: black;
+    margin-left: 10px;
 }
+
 button.btn.btn-primary:hover {
     color: white;
 }
 
-
-* {
-    box-sizing: border-box;
+button.btn.btn-primary.red {
+    background-color: #ED5E68;
+    /* color: white; */
 }
+
+
 
 button {
     margin-top: 20px;
@@ -99,9 +109,16 @@ button {
 ul.nav {
     list-style-type: none;
     margin: 0;
-    padding: 0;
+    padding: 20px;
+
     overflow: hidden;
-    background-color: #333;
+    /* background-color: #333; */
+    background-color: black;
+}
+
+.title {
+    margin: 0;
+    margin-right: 20px;
 }
   
 ul.nav > li {

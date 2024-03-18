@@ -87,10 +87,9 @@ const fetchBooks = async () => {
 
         // Append the "Edit" button to the list item
         liElement.appendChild(editButton);
-        // TODO: add delete button 
         const deleteButton = document.createElement('button')
         deleteButton.type = 'button'
-        deleteButton.classList.add('btn', 'btn-primary', 'btn-sm')
+        deleteButton.classList.add('btn', 'btn-primary', 'btn-sm', 'red')
         deleteButton.addEventListener('click', () => {deleteBook(book._id)})
 
         deleteButton.textContent = "Delete"
