@@ -1,19 +1,18 @@
-
 import { log } from 'console'
 import { NextFunction, Request, Response } from 'express'
 import { Book } from '../book'
 
-export const getAllBooks = async (req: Request, res: Response) => {
+export const getAllBooks = async (req: Request, res: Response, next: NextFunction) => {
 
     try {
         log("get all books endpoint")
-        const books = await Book.find();
+        const books = await Book.find()
         log("books returned from db: ", books)
         res.json(books)
 
     } catch(err) {
         log("error", err)
-        res.status(500).json({error: err})
+        next(err)
     }
 }
 
@@ -25,14 +24,11 @@ export const getBookById = async (req: Request, res: Response, next: NextFunctio
         res.json(found)
 
     } catch(err) {
-        log("error", err)
-        // TODO: test this
         next(err);
-        // res.status(500).json({error: err})
     }
 }
 
-export const addBook = (req: Request, res: Response) => {
+export const addBook = (req: Request, res: Response, next: NextFunction) => {
 
     try {
 
@@ -40,7 +36,7 @@ export const addBook = (req: Request, res: Response) => {
 
         if (!title || !author || !ISBN ) {
             const errorMessage = 'missing title/author/isbn'
-            res.status(500).json({ error: errorMessage })
+            next(errorMessage)
         }
 
         const book = new Book({
@@ -54,23 +50,22 @@ export const addBook = (req: Request, res: Response) => {
         res.json({message: 'saved book successfully'})
 
     } catch(err) {
-        log("error", err)
-        res.status(500).json({error: err})
+        next(err)
     }
 }
 
-export const updateBook = async (req: Request, res: Response) => {
+export const updateBook = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { id } = req.params
         const { title, author, isbn } = req.body
 
         if (!title && !author && !isbn) {
             const errorMessage = 'provided no fields to update'
-            res.status(500).json({error: errorMessage})
+            next(errorMessage)
         }
         if (!id) {
             const errorMessage = 'missing book id'
-            res.status(500).json({error: errorMessage})
+            next(errorMessage)
         }
         const filter = { '_id': id }
         const update = { 
@@ -86,18 +81,17 @@ export const updateBook = async (req: Request, res: Response) => {
         res.json({message: 'updated book successfully'})
 
     } catch(err) {
-        log('error', err)
-        res.status(500).json({error: err})
+        next(err)
     }
 }
 
-export const deleteBook = async (req: Request, res: Response) => {
+export const deleteBook = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const {id} =  req.params
 
         if (!id) {
             const errorMessage = 'missing book id'
-            res.status(500).json({error: errorMessage})
+            next(errorMessage)
         }
         const filter = {'_id': id}
         const deleteResult = await Book.deleteOne(filter)
@@ -111,7 +105,6 @@ export const deleteBook = async (req: Request, res: Response) => {
         }
 
     } catch(err) {
-        log('error', err)
-        res.status(500).json({error: err})
+        next(err)
     }
 }
