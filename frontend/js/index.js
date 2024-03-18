@@ -36,7 +36,7 @@ const returnBook = async(bookID, userID, returnDate) => {
         // "returnDate": "2024-03-06"
         bookID: bookID,
         userID: userID,
-        borrowDate, borrowDate
+        returnDate: returnDate 
     });
 
     const requestOptions = {
