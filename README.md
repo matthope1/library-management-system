@@ -12,16 +12,6 @@ Apply CRUD operations on books: Create, Read, Update, Delete.
 Implement functionality to borrow and return books.
 Use MongoDB as the database for storing book and transaction data.
 
-
-API documentation 
-
-# Assignment1 API Documentation
-
-## Overview
-
-This API provides endpoints to manage books and borrowing activities.
-
-
 ## Important notes 
 
 For the sake of keeping this project simple while still achieving its requirements, the client side will only have 1 user (userID is 1).
@@ -40,6 +30,16 @@ npm run start
 
 Then open up index.html in your browser to view the front end 
 
+
+
+
+API documentation 
+
+# Assignment1 API Documentation
+
+## Overview
+
+This API provides endpoints to manage books and borrowing activities.
 
 ## Endpoints
 
