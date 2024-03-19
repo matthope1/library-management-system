@@ -4,6 +4,7 @@ import { connectDB } from './db/db';
 import bodyParser from 'body-parser';
 import { errorHandler } from './middleware/errorMiddleware';
 import cors from 'cors'
+import { log } from 'console';
 
 connectDB()
 
@@ -14,13 +15,17 @@ app.use(bodyParser.json())
 app.use(cors());
 
 
-// error handling middleware
-app.use(errorHandler)
+app.use((req, res, next) => {
+  log('New request at:', Date.now())
+  next()
+})
 
 app.use('/api/', routes)
 
-app.get('/', (req: Request, res: Response) => {
-  res.send('hello');
+app.use(errorHandler)
+
+app.get('*', (req: Request, res: Response) => {
+  res.send('This resource cannot be found (?_?)');
 });
 
 app.listen(port, () => {

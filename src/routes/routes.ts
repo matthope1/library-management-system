@@ -2,7 +2,7 @@
 // src/routes/bookRoutes.ts
 import express from 'express'
 import * as bookController from '../controllers/bookController'
-import * as borrowController from  '../controllers/borrowController'
+import * as borrowController from '../controllers/borrowController'
 
 const router = express.Router()
 

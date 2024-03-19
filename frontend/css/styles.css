@@ -1,142 +1,149 @@
 html {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
-*, *:before, *:after {
-    box-sizing: inherit;
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
 }
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .wrapper {
-    margin-top: 20px;
-    margin-right: auto; 
-    margin-left:  auto; 
-    max-width: 960px;
-    padding-right: 10px; 
-    padding-left:  10px; 
-    /* border: 1px solid white; */
+  margin-top: 20px;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 960px;
+  padding-right: 10px;
+  padding-left: 10px;
+  /* border: 1px solid white; */
 }
 
 
 html,
 body {
-    margin: 0;
-    padding: 0;
-    font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
 }
-html,input, body {
-    background-color: #121212;
-    color: white;
+
+html,
+input,
+body {
+  background-color: #121212;
+  color: white;
 }
 
 label {
-    color: black;
+  color: black;
 }
 
 input {
-    background-color: #3f3f3f3f;
-    border: none;
-    border-radius: 8px;
-    padding: 7px;
-    margin: 5px 0;
+  background-color: #3f3f3f3f;
+  border: none;
+  border-radius: 8px;
+  padding: 7px;
+  margin: 5px 0;
 }
+
 select {
-    background-color: #3f3f3f3f;
-    border: none;
-    border-radius: 8px;
-    padding: 7px;
-    margin: 5px 0;
-    color: white;
+  background-color: #3f3f3f3f;
+  border: none;
+  border-radius: 8px;
+  padding: 7px;
+  margin: 5px 0;
+  color: white;
 }
+
 option {
-    color: white !important;
-    background-color: #3f3f3f3f !important;
-    border: none !important;
+  color: white !important;
+  background-color: #3f3f3f3f !important;
+  border: none !important;
 }
 
 button.btn.btn-primary {
-    width: 120px;
-    background-color: #a688fa;
-    border-radius: 25px;
-    cursor: pointer;
-    margin-top: 10px;
-    padding: 7px;
-    font-weight: bold;
-    border: none;
-    color: black;
-    margin-left: 10px;
+  width: 120px;
+  background-color: #a688fa;
+  border-radius: 25px;
+  cursor: pointer;
+  margin-top: 10px;
+  padding: 7px;
+  font-weight: bold;
+  border: none;
+  color: black;
+  margin-left: 10px;
 }
 
 button.btn.btn-primary:hover {
-    color: white;
+  color: white;
 }
 
 button.btn.btn-primary.red {
-    background-color: #ED5E68;
-    /* color: white; */
+  background-color: #ED5E68;
+  /* color: white; */
 }
 
 
 
 button {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
 .msg {
-    color: #a688fa;
-    font-weight: bold;
-    text-align: center;
+  color: #a688fa;
+  font-weight: bold;
+  text-align: center;
 }
 
 .err-msg {
-    color: #cc0000;
+  color: #cc0000;
 }
 
 .modal-title {
-    color: black;
+  color: black;
 }
 
 .btn-container {
-    border: 1px solid pink;
+  border: 1px solid pink;
 }
 
 
 /* nav */
 
 ul.nav {
-    list-style-type: none;
-    margin: 0;
-    padding: 20px;
+  list-style-type: none;
+  margin: 0;
+  padding: 20px;
 
-    overflow: hidden;
-    /* background-color: #333; */
-    background-color: black;
+  overflow: hidden;
+  /* background-color: #333; */
+  background-color: black;
 }
 
 .title {
-    margin: 0;
-    margin-right: 20px;
-}
-  
-ul.nav > li {
-    float: left;
+  margin: 0;
+  margin-right: 20px;
 }
 
-ul.nav > li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
+ul.nav>li {
+  float: left;
 }
 
-ul.nav > li a:hover {
-    background-color: #333;
+ul.nav>li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+ul.nav>li a:hover {
+  background-color: #333;
 }
 
 a.active {
-    background-color: #333;
+  background-color: #333;
 }
