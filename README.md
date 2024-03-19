@@ -22,6 +22,25 @@ API documentation
 This API provides endpoints to manage books and borrowing activities.
 
 
+## Important notes 
+
+For the sake of keeping this project simple while still achieving its requirements, the client side will only have 1 user (userID is 1).
+To extend on this project we could create unique sessions for users or have some sort of login or authentication.
+Then we would change the requests to the backend to include userid/email etc..
+
+To run the backend you can use these commands in the root dir
+
+```
+npm run build
+```
+
+```
+npm run start
+```
+
+Then open up index.html in your browser to view the front end 
+
+
 ## Endpoints
 
 ### 1. Delete Book
