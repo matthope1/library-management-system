@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express'
-import Transaction from '../transaction'
+import Transaction from '../models/transaction'
 import { log } from 'console'
 
 

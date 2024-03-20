@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express'
-import { Book } from '../book'
+import { Book } from '../models/book'
 
 export const getAllBooks = async (req: Request, res: Response, next: NextFunction) => {
 

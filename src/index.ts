@@ -14,11 +14,10 @@ const port = process.env.PORT || 3000;
 app.use(bodyParser.json())
 app.use(cors());
 
-
-app.use((req, res, next) => {
-  log('New request at:', Date.now())
-  next()
-})
+// app.use((req, res, next) => {
+//   log('New request at:', Date.now())
+//   next()
+// })
 
 app.use('/api/', routes)
 
